@@ -172,6 +172,24 @@ presence.on("UpdateData", async () => {
     data.endTimestamp = timestamps[1];
     data.smallImageKey = playing ? "play" : "pause";
     data.smallImageText = (await strings)[playing ? "play" : "pause"];
+    data.buttons = [
+      {
+        label: "Artist",
+        url: `${
+          (document.querySelector(
+            "div.playbackSoundBadge__titleContextContainer > a"
+          ) as HTMLAnchorElement).href
+        }`
+      },
+      {
+        label: "Song",
+        url: `${
+          (document.querySelector(
+            "div.playbackSoundBadge__title > a"
+          ) as HTMLAnchorElement).href
+        }`
+      }
+    ];
   }
 
   if ((!playing || !showSong) && showBrowsing) {
