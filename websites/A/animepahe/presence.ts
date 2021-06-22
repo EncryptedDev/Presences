@@ -35,12 +35,13 @@ class anime_storage {
       };
 
       // Removes the oldest stored anime if the store length has exceeded 10
-      if (Object.keys(this.list).length === 11)
-        delete this.list[
+      if (Object.keys(this.list).length === 11) {
+delete this.list[
           Object.entries(Object.assign({}, this.list)).sort(
             (a, b) => a[1].time - b[1].time
           )[0][0]
         ];
+}
 
       localStorage.setItem("presence_data", btoa(JSON.stringify(this.list)));
     }
@@ -84,8 +85,8 @@ function getTimestamp(time: number): string {
   const { sec, min, hrs } = getTimes(time);
 
   return hrs > 0
-    ? hrs + ":" + lessTen(min) + min + ":" + lessTen(sec) + sec
-    : min + ":" + lessTen(sec) + sec;
+    ? `${hrs}:${lessTen(min)}${min}:${lessTen(sec)}${sec}`
+    : `${min}:${lessTen(sec)}${sec}`;
 }
 
 presence.on(
@@ -128,10 +129,11 @@ presence.on("UpdateData", async () => {
     for (const info of document.getElementsByClassName("anime-info")[0]
       .children) {
       // Not uniform info order... ugh
-      if (info.children[0].textContent == "Type:")
-        info.children[1].textContent == "TV"
+      if (info.children[0].textContent == "Type:") {
+info.children[1].textContent == "TV"
           ? (type = "Season")
           : (type = info.children[1].textContent);
+}
       if (info.children[0].textContent == "External Links:")
         anilist = (info.children[1] as HTMLAnchorElement).href;
     }
@@ -201,16 +203,17 @@ presence.on("UpdateData", async () => {
 
     const anime_id = anime_store.anime(title, true);
 
-    if (anime_id)
-      presenceData.buttons = [
+    if (anime_id) {
+presenceData.buttons = [
         {
           label: `Watch ${movie ? "Movie" : "Episode"}`,
           url: `https://pahe.win/a/${anime_id}/${episode}`
         }
       ];
+}
 
     presence.setActivity(presenceData, true);
-  } else {
+  } else 
     presence.setActivity(presenceData, false);
-  }
+  
 });

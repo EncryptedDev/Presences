@@ -19,9 +19,9 @@ presence.on("UpdateData", async function () {
     } else if (
       (urlpath[1] == "" || document.location.pathname.includes("/#home")) &&
       urlpath[2] != ""
-    ) {
+    ) 
       presenceData.details = "Durchstöbert";
-    } else if (urlpath[1] == "compilation") {
+     else if (urlpath[1] == "compilation") {
       const compilation = document.querySelector(".artLogo");
       presenceData.details = "Betrachtet Compilation:";
       if (compilation) presenceData.state = compilation.alt;
@@ -32,7 +32,7 @@ presence.on("UpdateData", async function () {
         presenceData.buttons = [
           {
             label: "Compilation anschauen",
-            url: "https://www.joyn.de/compilation/" + urlpath[2]
+            url: `https://www.joyn.de/compilation/${urlpath[2]}`
           }
         ];
       }
@@ -47,7 +47,7 @@ presence.on("UpdateData", async function () {
         presenceData.buttons = [
           {
             label: "Film anschauen",
-            url: "https://www.joyn.de/filme/" + urlpath[2]
+            url: `https://www.joyn.de/filme/${urlpath[2]}`
           }
         ];
       }
@@ -62,7 +62,7 @@ presence.on("UpdateData", async function () {
         presenceData.buttons = [
           {
             label: "Serie anschauen",
-            url: "https://www.joyn.de/serien/" + urlpath[2]
+            url: `https://www.joyn.de/serien/${urlpath[2]}`
           }
         ];
       }
@@ -71,9 +71,9 @@ presence.on("UpdateData", async function () {
       (document.location.pathname.includes("/serien") ||
         document.location.pathname.includes("/filme") ||
         document.location.pathname.includes("/sport"))
-    ) {
+    ) 
       presenceData.details = "Durchstöbert";
-    } else if (urlpath[1] == "channels") {
+     else if (urlpath[1] == "channels") {
       presenceData.details = "Durchstöbert";
       presenceData.state = document.querySelector(".bISbKZ").textContent;
     } else if (urlpath[1] == "play" && urlpath[2] == "filme") {
@@ -99,7 +99,7 @@ presence.on("UpdateData", async function () {
         presenceData.buttons = [
           {
             label: "Film anschauen",
-            url: "https://www.joyn.de/filme/" + urlpath[3]
+            url: `https://www.joyn.de/filme/${urlpath[3]}`
           }
         ];
       }
@@ -127,7 +127,7 @@ presence.on("UpdateData", async function () {
         presenceData.buttons = [
           {
             label: "Serie anschauen",
-            url: "https://www.joyn.de/serien/" + urlpath[3]
+            url: `https://www.joyn.de/serien/${urlpath[3]}`
           }
         ];
       }
@@ -191,7 +191,7 @@ presence.on("UpdateData", async function () {
         presenceData.buttons = [
           {
             label: "Compilation anschauen",
-            url: "https://www.joyn.de/compilation/" + urlpath[3]
+            url: `https://www.joyn.de/compilation/${urlpath[3]}`
           }
         ];
       }
@@ -229,9 +229,9 @@ presence.on("UpdateData", async function () {
       if (urlpath[2] == "details") {
         presenceData.details = "Mein Account";
         presenceData.state = "Details";
-      } else {
+      } else 
         presenceData.details = "Mein Account";
-      }
+      
     } else if (urlpath[1] == "abo") {
       if (urlpath[2] == "bezahlung") {
         presenceData.details = "Mein Account";
@@ -246,20 +246,20 @@ presence.on("UpdateData", async function () {
     } else if (urlpath[1] == "fsk") {
       presenceData.details = "Mein Account";
       presenceData.state = "FSK Einstellungen";
-    } else if (urlpath[1] == "ueber-joyn") {
+    } else if (urlpath[1] == "ueber-joyn") 
       presenceData.details = "Über Joyn";
-    } else if (urlpath[1] == "jugendschutz") {
+     else if (urlpath[1] == "jugendschutz") 
       presenceData.details = "Jugendschutz";
-    } else if (urlpath[1] == "datenschutz") {
+     else if (urlpath[1] == "datenschutz") 
       presenceData.details = "Datenschutzerklärung";
-    } else if (urlpath[1] == "agb") {
+     else if (urlpath[1] == "agb") 
       presenceData.details = "AGB's";
-    }
+    
   }
   if (presenceData.details == null) {
     presence.setTrayTitle();
     presence.setActivity();
-  } else {
+  } else 
     presence.setActivity(presenceData);
-  }
+  
 });

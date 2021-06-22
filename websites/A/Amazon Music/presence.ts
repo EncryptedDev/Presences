@@ -39,9 +39,9 @@ presence.on("UpdateData", async () => {
     newLang = await presence.getSetting("lang").catch(() => "en"),
     showPlaylist = await presence.getSetting("showPlaylist");
 
-  if (!oldLang) {
+  if (!oldLang) 
     oldLang = newLang;
-  } else if (oldLang !== newLang) {
+   else if (oldLang !== newLang) {
     oldLang = newLang;
     strings = getStrings();
   }
@@ -93,9 +93,9 @@ presence.on("UpdateData", async () => {
         delete presenceData.endTimestamp;
       }
 
-      if (title !== null && artist !== null) {
+      if (title !== null && artist !== null) 
         presence.setActivity(presenceData);
-      }
+      
     } else {
       playlistLink = document
         .querySelector(
@@ -175,9 +175,9 @@ presence.on("UpdateData", async () => {
         delete presenceData.endTimestamp;
       }
 
-      if (title !== null && artist !== null) {
+      if (title !== null && artist !== null) 
         presence.setActivity(presenceData);
-      }
+      
     }
   } else {
     presenceData.details = "Browsing...";

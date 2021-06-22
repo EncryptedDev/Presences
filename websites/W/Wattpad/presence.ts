@@ -64,7 +64,7 @@ presence.on("UpdateData", async () => {
   } else if (storyCheck) {
     story = document.querySelector("span.info h1.title").textContent;
     const chapter = document.querySelector(".panel-reading h2").textContent;
-    data.details = "Reading " + story;
+    data.details = `Reading ${story}`;
     data.state = chapter;
     data.startTimestamp = browsingStamp;
   } else if (path.includes("/settings")) {

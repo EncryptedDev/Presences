@@ -1,4 +1,4 @@
-var presence = new Presence({
+const presence = new Presence({
     clientId: "617741834701242406"
   }),
   strings = presence.getStrings({
@@ -16,20 +16,20 @@ function getTimestamps(
   videoTime: number,
   videoDuration: number
 ): Array<number> {
-  var startTime = Date.now();
-  var endTime = Math.floor(startTime / 1000) - videoTime + videoDuration;
+  const startTime = Date.now(),
+   endTime = Math.floor(startTime / 1000) - videoTime + videoDuration;
   return [Math.floor(startTime / 1000), endTime];
 }
 
 presence.on("UpdateData", async () => {
-  var video: HTMLVideoElement = document.querySelector(
+  let video: HTMLVideoElement = document.querySelector(
     "#main-container > div > video"
-  );
+  ),
 
-  var description;
+   description;
 
   if (video && !isNaN(video.duration)) {
-    var title = document.querySelector(
+    const title = document.querySelector(
       "#player-video-overlay .player-title .player-title-name"
     ).textContent;
     if (document.location.pathname.includes("/live")) {
@@ -42,16 +42,16 @@ presence.on("UpdateData", async () => {
       ).textContent;
     }
 
-    if (description == null || description.trim() == title) {
+    if (description == null || description.trim() == title) 
       description = "Movie";
-    }
+    
 
-    var timestamps = getTimestamps(
+    let timestamps = getTimestamps(
       Math.floor(video.currentTime),
       Math.floor(video.duration)
-    );
+    ),
 
-    var currentState, smallImageKey, smallImageText;
+     currentState, smallImageKey, smallImageText;
     if (description.includes("ON NOW")) {
       currentState = "Live TV";
       timestamps[0] = 0;
@@ -66,12 +66,12 @@ presence.on("UpdateData", async () => {
         : (await strings).play;
     }
 
-    var data: PresenceData = {
+    const data: PresenceData = {
       details: title,
       state: currentState,
       largeImageKey: "showtime-logo",
-      smallImageKey: smallImageKey,
-      smallImageText: smallImageText,
+      smallImageKey,
+      smallImageText,
       startTimestamp: timestamps[0],
       endTimestamp: timestamps[1]
     };
@@ -81,9 +81,9 @@ presence.on("UpdateData", async () => {
       delete data.endTimestamp;
     }
 
-    if (title !== null) {
+    if (title !== null) 
       presence.setActivity(data, !video.paused);
-    }
+    
   } else {
     const browsingPresence: PresenceData = {
       details: "Browsing...",

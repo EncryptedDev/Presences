@@ -158,11 +158,11 @@ presence.on("UpdateData", async () => {
           YouCanSeeThis(x)
         )?.textContent;
 
-        if (day) {
+        if (day) 
           PageStatus = "ViewSchedule";
-        } else {
+         else 
           presenceData.details = "Viewing schedule";
-        }
+        
 
         presenceData.smallImageKey = "search";
         presenceData.startTimestamp = startTimestamp;
@@ -278,22 +278,23 @@ presence.on("UpdateData", async () => {
           !condition.enabled &&
           !condition.replace &&
           !condition.delete
-        ) {
+        ) 
           presenceData[setting as "state" | "details"] = condition.setTo;
-        } else if (
+         else if (
           condition.page === PageStatus &&
           !condition.enabled &&
           condition.delete
-        ) {
+        ) 
           delete presenceData[setting as keyof PresenceData];
-        } else if (condition.page === PageStatus && condition.replace) {
+         else if (condition.page === PageStatus && condition.replace) {
           let replaced = condition.setTo;
 
-          for (const replace of condition.replace.toRepalce)
-            replaced = replaced.replace(
+          for (const replace of condition.replace.toRepalce) {
+replaced = replaced.replace(
               replace.text,
               (pagesData[condition.page] || {})[replace.with] || "Loading..."
             );
+}
 
           presenceData[setting as "state" | "details"] = replaced;
         } else if (condition.delete && !condition.enabled)
@@ -305,9 +306,9 @@ presence.on("UpdateData", async () => {
   if (!presenceData.details) {
     presence.setActivity();
     presence.setTrayTitle();
-  } else {
+  } else 
     presence.setActivity(presenceData);
-  }
+  
 });
 
 /**

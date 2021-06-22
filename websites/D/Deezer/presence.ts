@@ -41,9 +41,9 @@ presence.on("UpdateData", async () => {
     buttons = await presence.getSetting("buttons"),
     newLang = await presence.getSetting("lang");
 
-  if (!oldLang) {
+  if (!oldLang) 
     oldLang = newLang;
-  } else if (oldLang !== newLang) {
+   else if (oldLang !== newLang) {
     oldLang = newLang;
     strings = getStrings();
   }
@@ -141,7 +141,7 @@ presence.on("UpdateData", async () => {
       presence.setActivity(presenceData, !paused);
     }
   } else {
-    const pathname = document.location.pathname,
+    const {pathname} = document.location,
       presenceData: PresenceData = {
         largeImageKey: "deezer"
       };
@@ -175,9 +175,9 @@ presence.on("UpdateData", async () => {
     } else if (pathname.includes("artist")) {
       presenceData.details = "Looking at...";
       presenceData.state = "An Artist";
-    } else {
+    } else 
       presenceData.details = "Browsing...";
-    }
+    
     presence.setActivity(presenceData);
   }
 });

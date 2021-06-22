@@ -1,8 +1,8 @@
 const presence = new Presence({
   clientId: "655050505726197781"
-});
+}),
 
-const browsingStamp = Math.floor(Date.now() / 1000);
+ browsingStamp = Math.floor(Date.now() / 1000);
 
 presence.on("UpdateData", () => {
   const presenceData: PresenceData = {
@@ -16,13 +16,13 @@ presence.on("UpdateData", () => {
       const title = document.querySelector(
         "#root > div > div > div.sidebar_root > div.sidebar_main > div > div.dramex2 > div > ul > li:nth-child(1) > div > div > a"
       );
-      presenceData.state = "server: " + title.innerHTML;
+      presenceData.state = `server: ${title.innerHTML}`;
     } else if (document.location.pathname.includes("/commands")) {
       presenceData.details = "Viewing a page:";
       presenceData.state = "Commands";
-    } else if (document.location.pathname.includes("/premium")) {
+    } else if (document.location.pathname.includes("/premium")) 
       presenceData.details = "Viewing Premium";
-    } else if (document.location.pathname.includes("/bg")) {
+     else if (document.location.pathname.includes("/bg")) {
       presenceData.details = "Managing the";
       presenceData.state = "profile backgrounds";
     } else if (document.location.pathname.includes("/id")) {
@@ -46,7 +46,7 @@ presence.on("UpdateData", () => {
   if (presenceData.details == null) {
     presence.setTrayTitle();
     presence.setActivity();
-  } else {
+  } else 
     presence.setActivity(presenceData);
-  }
+  
 });

@@ -1,4 +1,4 @@
-var presence = new Presence({
+const presence = new Presence({
   clientId: "704385469856612523"
 });
 
@@ -14,16 +14,16 @@ presence.on("UpdateData", async () => {
     );
     contributingProject = document.querySelector("a.sbSelector");
 
-    presenceData.details = "Contributing to: " + contributingProject.innerText;
-    presenceData.state = "Project Progress: " + cpuUsage.innerText;
-  } else {
+    presenceData.details = `Contributing to: ${contributingProject.innerText}`;
+    presenceData.state = `Project Progress: ${cpuUsage.innerText}`;
+  } else 
     presenceData.details = "Can't read page";
-  }
+  
 
   if (presenceData.details == null) {
     presence.setTrayTitle();
     presence.setActivity();
-  } else {
+  } else 
     presence.setActivity(presenceData);
-  }
+  
 });

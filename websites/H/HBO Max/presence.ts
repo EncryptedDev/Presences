@@ -112,8 +112,8 @@ setInterval(async function () {
             ?.textContent ||
           nodeSelector(selectors["episode:altnumber"], "street2_book", "28px")
             ?.textContent ||
-          undefined;
-        const epname =
+          undefined,
+         epname =
           nodeSelector(selectors["episode:name"], "street2_medium", "28px")
             ?.textContent ||
           nodeSelector(selectors["episode:altname"], "street2_medium", "28px")
@@ -139,13 +139,14 @@ setInterval(async function () {
               : epnumber || epname || "Episode"
         });
 
-        if (video?.currentTime && video?.currentTime > 0)
-          Object.assign(data, {
+        if (video?.currentTime && video?.currentTime > 0) {
+Object.assign(data, {
             smallImageKey: video.paused ? "pause" : "play",
             smallImageText: video.paused
               ? (await strings).pause
               : (await strings).play
           });
+}
         break;
       }
       case pathHandler(":extra:"):
@@ -172,16 +173,17 @@ setInterval(async function () {
             pathHandler(":extra:") || pathHandler("/extra/")
               ? "Extra"
               : "Feature"
-          }${desc ? " • " + desc : ""}`
+          }${desc ? ` • ${desc}` : ""}`
         });
 
-        if (video?.currentTime && video?.currentTime > 0)
-          Object.assign(data, {
+        if (video?.currentTime && video?.currentTime > 0) {
+Object.assign(data, {
             smallImageKey: video.paused ? "pause" : "play",
             smallImageText: video.paused
               ? (await strings).pause
               : (await strings).play
           });
+}
         break;
       }
       default: {

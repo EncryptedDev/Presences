@@ -1,9 +1,9 @@
-var presence = new Presence({
+let presence = new Presence({
   clientId: "563434444321587202"
-});
+}),
 
-var browsingStamp = Math.floor(Date.now() / 1000);
-var title: any;
+ browsingStamp = Math.floor(Date.now() / 1000),
+ title: any;
 
 presence.on("UpdateData", async () => {
   const presenceData: PresenceData = {
@@ -21,27 +21,27 @@ presence.on("UpdateData", async () => {
     } else if (document.location.pathname.includes("/premium")) {
       presenceData.details = "Premium";
       presenceData.smallImageKey = "reading";
-    } else if (document.location.pathname == "/") {
+    } else if (document.location.pathname == "/") 
       presenceData.details = "Homepage";
-    } else if (document.location.pathname == "/commands") {
+     else if (document.location.pathname == "/commands") 
       presenceData.details = "Commands";
-    } else if (document.location.pathname == "/status") {
+     else if (document.location.pathname == "/status") 
       presenceData.details = "Status";
-    } else if (document.location.pathname == "/profile") {
+     else if (document.location.pathname == "/profile") {
       title = document.querySelector(
         "div.app-content.content > div.content-wrapper > div.content-body > section.page-users-view > div.row > div.col-12 > div.card > div.card-body > div.row > div.col-12.col-sm-9.col-md-6.col-lg-5 > table > tbody > tr > tb.font-weight-bold"
       );
       presenceData.details = "Profile";
       presenceData.state = title.innerText;
-    } else if (document.location.pathname == "/verify") {
+    } else if (document.location.pathname == "/verify") 
       presenceData.details = "Verification";
-    }
+    
   }
 
   if (presenceData.details == null) {
     presence.setTrayTitle();
     presence.setActivity();
-  } else {
+  } else 
     presence.setActivity(presenceData);
-  }
+  
 });

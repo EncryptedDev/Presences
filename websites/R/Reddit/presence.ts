@@ -17,8 +17,8 @@ presence.on("UpdateData", async () => {
   const presenceData: PresenceData = {
     largeImageKey: "reddit_lg",
     startTimestamp
-  };
-  const { pathname } = window.location;
+  },
+   { pathname } = window.location;
   if (oldReddit) {
     subReddit = document.querySelector(".redditname")
       ? `r/${document.querySelector(".redditname").textContent}`

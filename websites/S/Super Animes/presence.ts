@@ -3,8 +3,8 @@ const presence = new Presence({
 });
 
 function getTimestamps(videoTime, videoDuration): Array<number> {
-  const startTime = Date.now();
-  const endTime = Math.floor(startTime / 1000) - videoTime + videoDuration;
+  const startTime = Date.now(),
+   endTime = Math.floor(startTime / 1000) - videoTime + videoDuration;
   return [Math.floor(startTime / 1000), endTime];
 }
 
@@ -20,8 +20,8 @@ presence.on("iFrameData", (data) => {
 presence.on("UpdateData", async () => {
   const presenceData: presenceData = {
     largeImageKey: "logo"
-  };
-  const tempo = Math.floor(Date.now() / 1000),
+  },
+   tempo = Math.floor(Date.now() / 1000),
     path = document.location.pathname,
     titulo = document.title,
     comentario: HTMLElement = document.querySelector(
@@ -74,21 +74,21 @@ presence.on("UpdateData", async () => {
     presenceData.startTimestamp = tempo;
   } else if (path.includes("/busca")) {
     presenceData.details = "Página de Busca";
-    if (barraPesquisa.value.length > 1) {
-      presenceData.state = "Pesquisando: " + barraPesquisa.value;
-    }
+    if (barraPesquisa.value.length > 1) 
+      presenceData.state = `Pesquisando: ${barraPesquisa.value}`;
+    
     presenceData.startTimestamp = tempo;
   } else if (path.includes("/genero")) {
     if (titulo != "Lista de Gêneros") {
       presenceData.details =
-        "Gênero: " + titulo.slice(titulo.search("Genero") + 6);
+        `Gênero: ${titulo.slice(titulo.search("Genero") + 6)}`;
       presenceData.state =
-        "Página " +
-        paginacao.value +
-        " de " +
+        `Página ${ 
+        paginacao.value 
+        } de ${ 
         paginacao.lastElementChild.textContent.slice(
           paginacao.lastElementChild.textContent.search("Página") + 6
-        );
+        )}`;
     } else {
       presenceData.details = "Página de Gêneros";
       presenceData.state = "Escolhendo um gênero";
@@ -97,12 +97,12 @@ presence.on("UpdateData", async () => {
   } else if (path.includes("/lista")) {
     presenceData.details = "Lista de conteúdo";
     presenceData.state =
-      "Página " +
-      paginacao.value +
-      " de " +
+      `Página ${ 
+      paginacao.value 
+      } de ${ 
       paginacao.lastElementChild.textContent.slice(
         paginacao.lastElementChild.textContent.search("Página") + 6
-      );
+      )}`;
     presenceData.startTimestamp = tempo;
   } else if (
     path.includes("/anime") ||
@@ -115,12 +115,12 @@ presence.on("UpdateData", async () => {
     if (nome.textContent.includes("- Super Animes")) {
       presenceData.details = titulo.slice(0, titulo.search("- Super Animes"));
       presenceData.state =
-        "Página " +
-        paginacao.value +
-        " de " +
+        `Página ${ 
+        paginacao.value 
+        } de ${ 
         paginacao.lastElementChild.textContent.slice(
           paginacao.lastElementChild.textContent.search("Página") + 6
-        );
+        )}`;
       presenceData.startTimestamp = tempo;
     } else {
       if (path.split("/").length - 1 == 3) {
@@ -139,8 +139,8 @@ presence.on("UpdateData", async () => {
             nome.textContent.search("filme")
           );
           presenceData.state =
-            "F" +
-            nome.textContent.slice(nome.textContent.search("filme")).slice(1);
+            `F${ 
+            nome.textContent.slice(nome.textContent.search("filme")).slice(1)}`;
         }
         if (nome.textContent.includes("ova")) {
           presenceData.details = nome.textContent.slice(
@@ -148,8 +148,8 @@ presence.on("UpdateData", async () => {
             nome.textContent.search("ova")
           );
           presenceData.state =
-            "O" +
-            nome.textContent.slice(nome.textContent.search("ova")).slice(1);
+            `O${ 
+            nome.textContent.slice(nome.textContent.search("ova")).slice(1)}`;
         }
         if (played) {
           !paused
@@ -168,12 +168,12 @@ presence.on("UpdateData", async () => {
         presenceData.details = nome.textContent;
         generosObra.innerText != "Desconhecido"
           ? (presenceData.state =
-              "Gêneros: " +
+              `Gêneros: ${ 
               generosObra.textContent
                 .split(" ")
                 .join(", ")
                 .slice(1)
-                .slice(0, -2))
+                .slice(0, -2)}`)
           : (presenceData.state = "Gênero: Desconhecido");
         presenceData.startTimestamp = tempo;
       }
@@ -183,66 +183,66 @@ presence.on("UpdateData", async () => {
     presenceData.startTimestamp = tempo;
     if (titulo != "Jogo da Forca - Super Animes") {
       presenceData.details = "Jogando Jogo da Forca";
-      presenceData.state = "Sala: " + nome.textContent.slice(14);
-    } else if (titulo == "Jogo da Forca - Super Animes") {
+      presenceData.state = `Sala: ${nome.textContent.slice(14)}`;
+    } else if (titulo == "Jogo da Forca - Super Animes") 
       presenceData.state = "Escolhendo uma partida...";
-    }
+    
   } else if (path.includes("/perfil")) {
-    presenceData.details = "Perfil: " + nomePerfil.innerText;
+    presenceData.details = `Perfil: ${nomePerfil.innerText}`;
     if (
       nome != null &&
       nome.textContent.includes("Lista de Todos os Marcados")
-    ) {
+    ) 
       presenceData.state = "Conteúdos marcados";
-    } else if (document.URL.includes("/perfil?editar=true")) {
+     else if (document.URL.includes("/perfil?editar=true")) 
       presenceData.state = "Editando o perfil";
-    } else if (document.URL.includes("?more-itens=true")) {
+     else if (document.URL.includes("?more-itens=true")) 
       presenceData.state = "Mais links";
-    } else if (path.includes("/mensagem")) {
+     else if (path.includes("/mensagem")) 
       presenceData.state = "Lista de mensagens";
-    } else if (descricaoPerfil != null) {
+     else if (descricaoPerfil != null) {
       presenceData.state = descricaoPerfil.innerText
         .replace("❞", "")
         .replace("❝", "");
-    } else if (nome != null && nome.textContent.includes("Lista de Favorito")) {
+    } else if (nome != null && nome.textContent.includes("Lista de Favorito")) 
       presenceData.state = "Lista de favoritos";
-    } else if (
+     else if (
       nome != null &&
       nome.textContent.includes("Lista de Ver Depois")
-    ) {
+    ) 
       presenceData.state = "Lista de assistir depois";
-    } else if (
+     else if (
       nome != null &&
       nome.textContent.includes("Lista de Arquivado / Abandonado")
-    ) {
+    ) 
       presenceData.state = "Lista de dropados";
-    } else if (
+     else if (
       nome != null &&
       nome.textContent.includes("Lista de Notificados")
-    ) {
+    ) 
       presenceData.state = "Lista de notificados";
-    } else if (nome != null && nome.textContent.includes("Lista de Seguindo")) {
+     else if (nome != null && nome.textContent.includes("Lista de Seguindo")) 
       presenceData.state = "Lista de seguidos";
-    } else if (nome != null && nome.textContent.includes("Lista de Em Pausa")) {
+     else if (nome != null && nome.textContent.includes("Lista de Em Pausa")) 
       presenceData.state = "Lista de pausados";
-    } else if (nome != null && nome.textContent.includes("Lista de Já Visto")) {
+     else if (nome != null && nome.textContent.includes("Lista de Já Visto")) 
       presenceData.state = "Lista de já vistos";
-    } else if (
+     else if (
       nomeidentificadorPerfil != null &&
       nomeidentificadorPerfil.textContent.includes("Lista de Galerias")
-    ) {
+    ) 
       presenceData.state = "Galeria";
-    } else if (
+     else if (
       nomeidentificadorPerfil != null &&
       nomeidentificadorPerfil.textContent.includes("Lista de Imagens")
-    ) {
+    ) 
       presenceData.state = "Imagens";
-    } else if (
+     else if (
       nomeidentificadorPerfilAmigos != null &&
       nomeidentificadorPerfilAmigos.textContent.includes("Lista de Amigos")
-    ) {
+    ) 
       presenceData.state = "Amigos";
-    }
+    
     presenceData.startTimestamp = tempo;
   } else if (path.includes("/lancamento")) {
     presenceData.details = "Página de Lançamentos";
@@ -251,18 +251,18 @@ presence.on("UpdateData", async () => {
   } else if (path.includes("/top-user")) {
     presenceData.details = "Top Usuários";
     presenceData.state =
-      "Em " +
+      `Em ${ 
       topCategorizar.textContent.slice(
         topCategorizar.textContent.search("Top") + 4
-      );
+      )}`;
     presenceData.startTimestamp = tempo;
   } else if (path.includes("/top")) {
     presenceData.details = "Top Conteúdo";
     presenceData.state =
-      "Do(a) " +
+      `Do(a) ${ 
       topCategorizar.textContent.slice(
         topCategorizar.textContent.search("Top 100-") + 10
-      );
+      )}`;
     presenceData.startTimestamp = tempo;
   } else if (path.includes("/hunter")) {
     presenceData.details = "Página do Hunter";
@@ -270,15 +270,15 @@ presence.on("UpdateData", async () => {
     presenceData.startTimestamp = tempo;
   } else if (path == "/indicacao") {
     presenceData.details = "Indicação de Conteúdo";
-    if (indicacaoGenero.value == "" && indicacaoTipo.value == "") {
+    if (indicacaoGenero.value == "" && indicacaoTipo.value == "") 
       presenceData.state = "Selecionando";
-    }
+    
     if (indicacaoTipo.value != "") {
       if (indicacaoGenero.value != "") {
         presenceData.state =
-          indicacaoTipo[indicacaoTipo.selectedIndex].innerText +
-          " |" +
-          indicacaoGenero[indicacaoGenero.selectedIndex].innerText;
+          `${indicacaoTipo[indicacaoTipo.selectedIndex].innerText 
+          } |${ 
+          indicacaoGenero[indicacaoGenero.selectedIndex].innerText}`;
       } else {
         presenceData.state =
           indicacaoTipo[indicacaoTipo.selectedIndex].innerText;
@@ -286,9 +286,9 @@ presence.on("UpdateData", async () => {
     } else if (indicacaoGenero.value != "") {
       if (indicacaoTipo.value != "") {
         presenceData.state =
-          indicacaoTipo[indicacaoTipo.selectedIndex].innerText +
-          " |" +
-          indicacaoGenero[indicacaoGenero.selectedIndex].innerText;
+          `${indicacaoTipo[indicacaoTipo.selectedIndex].innerText 
+          } |${ 
+          indicacaoGenero[indicacaoGenero.selectedIndex].innerText}`;
       } else {
         presenceData.state =
           indicacaoGenero[indicacaoGenero.selectedIndex].innerText;
@@ -343,9 +343,9 @@ presence.on("UpdateData", async () => {
     presenceData.startTimestamp = tempo;
   }
 
-  if (comentario != null) {
+  if (comentario != null) 
     presenceData.state = "Lendo os comentários";
-  }
+  
 
   if (presenceData.details == null) {
     presenceData.details = "Navegando...";
@@ -367,65 +367,65 @@ presence.on("UpdateData", async () => {
         infoDivTitulo.textContent.includes(
           "Você precisa esta logado para visualizar a lista de Próximos Vídeos a serem Assistidos!"
         )
-      ) {
+      ) 
         delete presenceData.state;
-      } else {
+       else {
         if (
           infoDivTitulo.textContent.includes(
             "Conteúdo(s) marcado(s) como Favorito."
           )
-        ) {
+        ) 
           presenceData.state = "Em menu de favoritos";
-        } else if (
+         else if (
           infoDivTitulo.textContent.includes("Você tem") &&
           infoDivTitulo.textContent.includes("notificações!")
-        ) {
+        ) 
           presenceData.state = "Em menu de notificações";
-        } else if (
+         else if (
           infoDivTitulo.textContent.includes(
             "Perfil/Perfis com conteúdos a serem visto"
           )
-        ) {
+        ) 
           presenceData.state = "Em menu de conteúdos a serem visto";
-        } else if (
+         else if (
           infoDivTitulo.textContent.includes(
             "Conteúdo(s) marcado(s) como Já Visto."
           )
-        ) {
+        ) 
           presenceData.state = "Em menu de conteúdos já vistos";
-        } else if (
+         else if (
           infoDivTitulo.textContent.includes(
             "Conteúdo(s) marcado(s) como Seguindo."
           )
-        ) {
+        ) 
           presenceData.state = "Em menu de conteúdos sendo acompanhados";
-        } else if (
+         else if (
           infoDivTitulo.textContent.includes(
             "Conteúdo(s) marcado(s) como Ver Depois."
           )
-        ) {
+        ) 
           presenceData.state = "Em menu de assistir depois";
-        } else if (
+         else if (
           infoDivTitulo.textContent.includes(
             "Conteúdo(s) marcado(s) como Pausado."
           )
-        ) {
+        ) 
           presenceData.state = "Em menu de pausados";
-        } else if (
+         else if (
           infoDivTitulo.textContent.includes(
             "Conteúdo(s) marcado(s) como Dropado/Arquivado."
           )
-        ) {
+        ) 
           presenceData.state = "Em menu de conteúdos dropados";
-        } else if (
+         else if (
           infoDivTitulo.textContent.includes("um conteúdo no histórico")
-        ) {
+        ) 
           presenceData.state = "Em menu do histórico";
-        } else if (
+         else if (
           infoDivTitulo.textContent.includes("no histórico de Download")
-        ) {
+        ) 
           presenceData.state = "Em menu de baixados";
-        }
+        
       }
     }
   }

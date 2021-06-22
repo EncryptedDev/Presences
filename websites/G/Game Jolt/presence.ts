@@ -29,9 +29,9 @@ presence.on("UpdateData", async () => {
     ) as HTMLElement,
     profile = document.querySelector(
       "#content > div > div > header > section > div > div.row > div > div > h1 > small"
-    ) as HTMLElement;
+    ) as HTMLElement,
 
-  const data: { [k: string]: any } = {
+   data: { [k: string]: any } = {
     largeImageKey: "gj-logo",
     startTimestamp: Math.floor(Date.now() / 1000)
   };
@@ -47,7 +47,7 @@ presence.on("UpdateData", async () => {
     gameName.textContent !== ""
   ) {
     data.details = `Viewing a game${
-      author && author.textContent !== "" ? " by " + author.textContent : ""
+      author && author.textContent !== "" ? ` by ${author.textContent}` : ""
     }:`;
     data.state = gameName.textContent.trim();
   } else if (pages[page] || pages[page.slice(0, -1)]) {

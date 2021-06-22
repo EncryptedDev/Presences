@@ -110,9 +110,9 @@ function getAnimeEpsiodeEntity(): AnimeEpisodeEntity {
           if (videoInstance.paused) {
             if (data.startTimestamp) delete data.startTimestamp;
             if (data.endTimestamp) delete data.endTimestamp;
-          } else {
+          } else 
             data.endTimestamp = endTimestamp;
-          }
+          
           return data;
         }
       },

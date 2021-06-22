@@ -31,9 +31,9 @@ presence.on("UpdateData", async () => {
     showButtons: boolean = await presence.getSetting("buttons"),
     searchQuery: boolean = await presence.getSetting("searchQuery");
 
-  if (!oldLang) {
+  if (!oldLang) 
     oldLang = newLang;
-  } else if (oldLang !== newLang) {
+   else if (oldLang !== newLang) {
     oldLang = newLang;
     strings = getStrings();
   }
@@ -114,9 +114,9 @@ presence.on("UpdateData", async () => {
             ? `- ${contentEp[0].match(/(\([1-9]?[0-9]\))/g)[0]}`
             : "Variety show"
         }`;
-      } else {
+      } else 
         data.ep = `Variety show`;
-      }
+      
 
       data.title = (data.title.match(/.+?(?=\s{2})/g) || [null])[0];
     }
@@ -187,9 +187,9 @@ presence.on("UpdateData", async () => {
       presenceData.state = `${result} matching ${
         parseInt(result, 10) > 1 ? "results" : "result"
       }`;
-    } else {
+    } else 
       presenceData.state = `No matching result`;
-    }
+    
   } else if (document.location.pathname.includes("/personal")) {
     const type = new URLSearchParams(document.location.search).get("type"),
       all = document.querySelector(

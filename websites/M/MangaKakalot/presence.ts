@@ -1,8 +1,8 @@
 const presence = new Presence({
   clientId: "698217762660548799"
-});
+}),
 
-const browsingStamp = Math.floor(Date.now() / 1000);
+ browsingStamp = Math.floor(Date.now() / 1000);
 
 presence.on("UpdateData", async () => {
   const presenceData: PresenceData = {
@@ -17,10 +17,10 @@ presence.on("UpdateData", async () => {
         .querySelector("body > div.info-top-chapter > h2")
         .textContent.split("Chapter")[0];
       presenceData.state =
-        "Chapter" +
+        `Chapter${ 
         document
           .querySelector("body > div.info-top-chapter > h2")
-          .textContent.split("Chapter")[1];
+          .textContent.split("Chapter")[1]}`;
       presenceData.smallImageKey = "reading";
     } else if (document.location.pathname.includes("/manga_list")) {
       presenceData.details = "Viewing genre:";
@@ -34,17 +34,17 @@ presence.on("UpdateData", async () => {
       presenceData.state = document.querySelector(
         "body > div.container > div.main-wrapper > div.leftCol > div.manga-info-top > ul > li:nth-child(1) > h1"
       ).textContent;
-    } else if (document.location.pathname.includes("/latest")) {
+    } else if (document.location.pathname.includes("/latest")) 
       presenceData.details = "Viewing the latest mangas";
-    } else if (document.location.pathname.includes("/search")) {
+     else if (document.location.pathname.includes("/search")) {
       presenceData.details = "Searching for:";
       presenceData.state = document.querySelector(
         "body > div.container > div.main-wrapper > div.leftCol > div.daily-update > h3"
       ).textContent;
       presenceData.smallImageKey = "search";
-    } else if (document.location.pathname == "/") {
+    } else if (document.location.pathname == "/") 
       presenceData.details = "Browsing...";
-    }
+    
   } else {
     if (document.location.pathname.includes("/chapter")) {
       presenceData.details = document
@@ -53,12 +53,12 @@ presence.on("UpdateData", async () => {
         )
         .textContent.split("CHAPTER")[0];
       presenceData.state =
-        "CHAPTER" +
+        `CHAPTER${ 
         document
           .querySelector(
             "body > div.body-site > div:nth-child(1) > div.panel-chapter-info-top > h1"
           )
-          .textContent.split("CHAPTER")[1];
+          .textContent.split("CHAPTER")[1]}`;
       presenceData.smallImageKey = "reading";
     } else if (document.location.pathname.includes("/manga")) {
       presenceData.details = "Viewing manga:";
@@ -75,7 +75,7 @@ presence.on("UpdateData", async () => {
     } else if (document.location.pathname.includes("/search")) {
       presenceData.details = "Searching for:";
       presenceData.state =
-        "Keyword: " +
+        `Keyword: ${ 
         document
           .querySelector(
             "body > div.body-site > div.container.container-main > div.container-main-left > div.panel-breadcrumb"
@@ -86,17 +86,17 @@ presence.on("UpdateData", async () => {
               "body > div.body-site > div.container.container-main > div.container-main-left > div.panel-breadcrumb > span:nth-child(3)"
             ).textContent
           )[0]
-          .trim();
+          .trim()}`;
       presenceData.smallImageKey = "search";
-    } else if (document.location.pathname == "/") {
+    } else if (document.location.pathname == "/") 
       presenceData.details = "Browsing...";
-    }
+    
   }
 
   if (presenceData.details == null) {
     presence.setTrayTitle();
     presence.setActivity();
-  } else {
+  } else 
     presence.setActivity(presenceData);
-  }
+  
 });

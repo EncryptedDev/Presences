@@ -1,8 +1,8 @@
-var presence = new Presence({
+const presence = new Presence({
   clientId: "619286440353726465"
-});
+}),
 
-var browsingStamp = Math.floor(Date.now() / 1000);
+ browsingStamp = Math.floor(Date.now() / 1000);
 
 presence.on("UpdateData", async () => {
   const data: PresenceData = {
@@ -28,7 +28,7 @@ presence.on("UpdateData", async () => {
       (data.startTimestamp = browsingStamp);
     presence.setActivity(data);
   } else if (document.location.pathname.endsWith("/profile")) {
-    var user = document
+    const user = document
       .querySelector(".profile-infos h1.name")
       .textContent.split("Follow")[0];
     (data.details = "Viewing a User Profile"),
@@ -41,12 +41,12 @@ presence.on("UpdateData", async () => {
     presence.setActivity(data);
   } else if (document.location.pathname.includes("/show")) {
     if (document.location.pathname.includes("/episode/")) {
-      var showname = document.querySelector("div.info-box h3 a").textContent;
-      var shownumber = document.querySelector(
+      const showname = document.querySelector("div.info-box h3 a").textContent,
+       shownumber = document.querySelector(
         "div.info-box h1 .episode-label"
       ).textContent;
       (data.details = "Viewing an Episode"),
-        (data.state = showname + " - " + shownumber);
+        (data.state = `${showname} - ${shownumber}`);
       data.startTimestamp = browsingStamp;
       presence.setActivity(data);
     } else if (document.location.pathname.endsWith("/explore")) {
@@ -54,7 +54,7 @@ presence.on("UpdateData", async () => {
         (data.startTimestamp = browsingStamp);
       presence.setActivity(data);
     } else {
-      var show = document.querySelector(
+      const show = document.querySelector(
         "div.info-box.heading-info h1"
       ).textContent;
       (data.details = "Viewing a TV Show"), (data.state = show);
@@ -62,7 +62,7 @@ presence.on("UpdateData", async () => {
       presence.setActivity(data);
     }
   } else if (document.location.pathname.includes("/actor/")) {
-    var actor = document.querySelector(
+    const actor = document.querySelector(
       "div#actor-details div.infos h1"
     ).textContent;
     (data.details = "Viewing an Actor Profile"), (data.state = actor);
@@ -94,7 +94,7 @@ presence.on("UpdateData", async () => {
         (data.startTimestamp = browsingStamp);
       presence.setActivity(data);
     } else {
-      var article = document.querySelector(
+      const article = document.querySelector(
         "div.article h1.page-header"
       ).textContent;
       (data.details = "Viewing an Article"), (data.state = article);

@@ -39,9 +39,9 @@ presence.on("UpdateData", async () => {
 
   if (!videoData) videoData = await presence.getPageletiable("GA_DIMENSIONS");
 
-  if (!oldLang) {
+  if (!oldLang) 
     oldLang = newLang;
-  } else if (oldLang !== newLang) {
+   else if (oldLang !== newLang) {
     oldLang = newLang;
     strings = getStrings();
   }
@@ -76,9 +76,9 @@ presence.on("UpdateData", async () => {
         ""
       );
 
-      if (isMovie) {
+      if (isMovie) 
         presenceData.state = "Movie";
-      } else if (isHighlight) {
+       else if (isHighlight) {
         presenceData.state = `Highlight • EP.${episode}${
           part ? ` • ${part[0]} ` : ""
         }${hasEpName ? ` • ${episodeName}` : ""}`;

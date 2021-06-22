@@ -60,7 +60,7 @@ quora.on("UpdateData", async () => {
       account = document.querySelector(
         ".spacing_log_answer_header > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > a:nth-child(1) > span:nth-child(1)"
       ).textContent;
-      presenceData.details = "Viewing " + account + "'s answer for:";
+      presenceData.details = `Viewing ${account}'s answer for:`;
       presenceData.state = question;
     } else if (document.location.pathname.match(/^\/[A-Za-z0-9\%\-]+/)) {
       presenceData.startTimestamp = browsingStamp;
@@ -74,8 +74,8 @@ quora.on("UpdateData", async () => {
     if (presenceData.details == null) {
       quora.setTrayTitle();
       quora.setActivity();
-    } else {
+    } else 
       quora.setActivity(presenceData);
-    }
+    
   }
 });

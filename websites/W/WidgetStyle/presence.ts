@@ -9,9 +9,9 @@ presence.on("UpdateData", async () => {
     startTimestamp: browsingStamp
   };
 
-  if (document.location.pathname === "/") {
+  if (document.location.pathname === "/") 
     presenceData.details = "Viewing 🏠 home page";
-  } else if (document.location.pathname.includes("/widgets")) {
+   else if (document.location.pathname.includes("/widgets")) {
     const search = document.getElementById("search")?.getAttribute("value"),
       total = document.getElementById("widgettotal")?.getAttribute("total");
     presenceData.details = `Viewing ⚙️ ${total} widgets`;
@@ -72,7 +72,7 @@ presence.on("UpdateData", async () => {
   if (presenceData.details == null) {
     presence.setTrayTitle();
     presence.setActivity();
-  } else {
+  } else 
     presence.setActivity(presenceData);
-  }
+  
 });

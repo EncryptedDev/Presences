@@ -2,13 +2,13 @@ const presence = new Presence({ clientId: "639591760791732224" }),
   strings = presence.getStrings({
     play: "presence.playback.playing",
     pause: "presence.playback.paused"
-  });
-const browsingStamp = Math.floor(Date.now() / 1000);
+  }),
+ browsingStamp = Math.floor(Date.now() / 1000);
 let user: HTMLElement,
   title: HTMLElement,
   inread_title: HTMLElement,
-  page: HTMLElement;
-let video: HTMLVideoElement,
+  page: HTMLElement,
+ video: HTMLVideoElement,
   videoDuration: number,
   videoCurrentTime: number,
   videoPaused: boolean;
@@ -71,9 +71,9 @@ presence.on("UpdateData", async () => {
           "#bilibiliPlayer > div.bilibili-player-area.video-state-blackside > div.bilibili-player-video-wrap > div.bilibili-player-video > video"
         );
       }
-      if (video == null) {
+      if (video == null) 
         video = document.querySelector(".bilibili-player-video > video");
-      }
+      
       if (video == null) {
         video = document.querySelector(
           "#bilibiliPlayer > div.bilibili-player-area.video-state-blackside.progress-shadow-show > div.bilibili-player-video-wrap > div.bilibili-player-video > video"
@@ -100,15 +100,15 @@ presence.on("UpdateData", async () => {
         delete presenceData.endTimestamp;
       }
 
-      if (huodong_title != null) {
+      if (huodong_title != null) 
         title = document.querySelector("#viewbox_report > h1 > span");
-      } else if (hudong_title != null) {
+       else if (hudong_title != null) {
         title = document.querySelector(
           "#viewbox_report > h1 > span.tit.tr-fix"
         );
-      } else {
+      } else 
         title = document.querySelector("#viewbox_report > h1");
-      }
+      
       if (multi_user != null) {
         user = document.querySelector(
           "#member-container > div:nth-child(1) > div.avatar-name__container > a"
@@ -166,9 +166,9 @@ presence.on("UpdateData", async () => {
           "#bilibiliPlayer > div.bilibili-player-area.video-state-blackside > div.bilibili-player-video-wrap > div.bilibili-player-video > video"
         );
       }
-      if (video == null) {
+      if (video == null) 
         video = document.querySelector(".bilibili-player-video > video");
-      }
+      
       if (video == null) {
         video = document.querySelector(
           "#bilibiliPlayer > div.bilibili-player-area.video-state-blackside.progress-shadow-show > div.bilibili-player-video-wrap > div.bilibili-player-video > video"
@@ -202,7 +202,7 @@ presence.on("UpdateData", async () => {
       );
 
       presenceData.details = title.innerText;
-      presenceData.state = "Episode: " + page.innerText + "";
+      presenceData.state = `Episode: ${page.innerText}`;
       //小黑屋
     } else if (document.location.pathname == "/blackroom/") {
       presenceData.startTimestamp = browsingStamp;
@@ -266,9 +266,9 @@ presence.on("UpdateData", async () => {
       title = document.querySelector("head > title");
       presenceData.startTimestamp = browsingStamp;
       presenceData.details = "Browsing for subcategory";
-      if (title.innerText == "哔哩哔哩 (゜-゜)つロ 干杯~-bilibili") {
+      if (title.innerText == "哔哩哔哩 (゜-゜)つロ 干杯~-bilibili") 
         presenceData.state = "资讯";
-      } else {
+       else {
         presenceData.state = title.innerText.replace(
           " - 哔哩哔哩 (゜-゜)つロ 干杯~-bilibili",
           ""
@@ -300,7 +300,7 @@ presence.on("UpdateData", async () => {
     if (user !== null) {
       presenceData.startTimestamp = browsingStamp;
       presenceData.details = "Viewing dynamic";
-      presenceData.state = "of: " + user.innerText;
+      presenceData.state = `of: ${user.innerText}`;
       presenceData.smallImageKey = "reading";
     } else if (document.location.pathname.includes("/topic")) {
       title = document.querySelector(
@@ -308,7 +308,7 @@ presence.on("UpdateData", async () => {
       );
       presenceData.startTimestamp = browsingStamp;
       presenceData.details = "Viewing dynamic";
-      presenceData.state = "Tag: " + title.innerText;
+      presenceData.state = `Tag: ${title.innerText}`;
     } else {
       presenceData.startTimestamp = browsingStamp;
       presenceData.details = "Browsing for dynamic";
@@ -342,11 +342,11 @@ presence.on("UpdateData", async () => {
       delete presenceData.endTimestamp;
     }
     if (user !== null) {
-      presenceData.details = "Watching " + user.innerText + "'s shortfilm";
+      presenceData.details = `Watching ${user.innerText}'s shortfilm`;
       presenceData.smallImageKey = "vcall";
-    } else {
+    } else 
       presenceData.details = "Browsing for shortfilm";
-    }
+    
     //space
   } else if (document.location.hostname == "space.bilibili.com") {
     user = document.querySelector("#h-name");
@@ -396,7 +396,7 @@ presence.on("UpdateData", async () => {
     if (page !== null) {
       presenceData.startTimestamp = browsingStamp;
       presenceData.details = inread_title.innerText;
-      presenceData.state = "Reading P." + page.innerText;
+      presenceData.state = `Reading P.${page.innerText}`;
       presenceData.smallImageKey = "reading";
     } else if (title !== null) {
       presenceData.startTimestamp = browsingStamp;
@@ -495,7 +495,7 @@ presence.on("UpdateData", async () => {
   if (presenceData.details == null) {
     presence.setTrayTitle();
     presence.setActivity();
-  } else {
+  } else 
     presence.setActivity(presenceData);
-  }
+  
 });

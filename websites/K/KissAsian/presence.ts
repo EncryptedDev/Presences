@@ -47,9 +47,9 @@ presence.on("UpdateData", async () => {
       if (searchField.value !== "") {
         presenceData.details = "Searching for";
         presenceData.state = searchField.value;
-      } else {
+      } else 
         presenceData.details = "Viewing home page";
-      }
+      
     } else if (
       document.querySelector("header.entry-header > div.entry-meta") &&
       document
@@ -137,9 +137,9 @@ presence.on("UpdateData", async () => {
       presenceData.smallImageKey = "reading";
     }
   } else if (document.location.hostname == "kissasian.li") {
-    if (document.location.pathname == "/") {
+    if (document.location.pathname == "/") 
       presenceData.details = "Viewing home page";
-    } else if (document.querySelector("#selectEpisode") !== null) {
+     else if (document.querySelector("#selectEpisode") !== null) {
       const video: HTMLVideoElement =
         document.querySelector("#my_video_1_html5_api") ||
         document.querySelector("#centerDivVideo > div > div > video") ||
@@ -198,7 +198,7 @@ presence.on("UpdateData", async () => {
   if (presenceData.details == null) {
     presence.setTrayTitle();
     presence.setActivity();
-  } else {
+  } else 
     presence.setActivity(presenceData);
-  }
+  
 });

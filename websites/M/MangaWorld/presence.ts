@@ -1,11 +1,11 @@
 const presence = new Presence({
   clientId: "667275999288754182"
-});
+}),
 
-const browsingStamp = Math.floor(Date.now() / 1000);
-let manganame;
-let chapternumber;
-let pagenumber;
+ browsingStamp = Math.floor(Date.now() / 1000);
+let manganame,
+ chapternumber,
+ pagenumber;
 
 presence.on("UpdateData", async () => {
   const data: PresenceData = {
@@ -73,8 +73,8 @@ presence.on("UpdateData", async () => {
         .split("cercato ")[1]
         .split(" - Pagina")[0];
       data.details =
-        "Sta cercando: " +
-        document.title.split("cercato ")[1].split(" - Pagina")[0];
+        `Sta cercando: ${ 
+        document.title.split("cercato ")[1].split(" - Pagina")[0]}`;
       data.state = document.title
         .split(" - ")[1]
         .replace(" - MangaWorld", "")
@@ -88,8 +88,8 @@ presence.on("UpdateData", async () => {
         .split("cercato ")[1]
         .split(" - MangaWorld")[0];
       data.details =
-        "Sta cercando: " +
-        document.title.split("cercato ")[1].split(" - MangaWorld")[0];
+        `Sta cercando: ${ 
+        document.title.split("cercato ")[1].split(" - MangaWorld")[0]}`;
       data.state = "Pagina: 1";
       data.startTimestamp = browsingStamp;
       presence.setActivity(data);
@@ -112,7 +112,7 @@ presence.on("UpdateData", async () => {
       data.smallImageKey = "search";
       data.smallImageText = document.title.split(" Archivi")[0];
       data.details = "Naviga nel Genere:";
-      data.state = document.title.split(" Archivi")[0] + "｜Pag. 1";
+      data.state = `${document.title.split(" Archivi")[0]}｜Pag. 1`;
       data.startTimestamp = browsingStamp;
       presence.setActivity(data);
     }
@@ -121,9 +121,9 @@ presence.on("UpdateData", async () => {
       manganame = document.title
         .replace(" - MangaWorld", "")
         .replace(" scan ITA", "");
-      if (manganame.includes("- Scan ITA")) {
+      if (manganame.includes("- Scan ITA")) 
         manganame = manganame.replace(" - Scan ITA", "");
-      }
+      
       chapternumber = document.location.href
         .split("capitolo-")[1]
         .split("/p/")[0]
@@ -131,8 +131,8 @@ presence.on("UpdateData", async () => {
       pagenumber = document.location.href.split("/p/")[1].replace("/", "");
       data.smallImageKey = "reading";
       data.smallImageText = "Legge";
-      data.details = "Legge: " + manganame;
-      data.state = "Capitolo: " + chapternumber + "｜Pag. " + pagenumber;
+      data.details = `Legge: ${manganame}`;
+      data.state = `Capitolo: ${chapternumber}｜Pag. ${pagenumber}`;
       data.startTimestamp = browsingStamp;
       presence.setActivity(data);
     } else if (document.location.pathname.match("/oneshot")) {
@@ -140,13 +140,13 @@ presence.on("UpdateData", async () => {
       manganame = document.title
         .replace(" - MangaWorld", "")
         .replace(" scan ITA", "");
-      if (manganame.includes("- Scan ITA")) {
+      if (manganame.includes("- Scan ITA")) 
         manganame = manganame.replace(" - Scan ITA", "");
-      }
+      
       data.smallImageKey = "reading";
       data.smallImageText = "Legge";
-      data.details = "Legge: " + manganame;
-      data.state = "Oneshot｜Pag. " + pagenumber;
+      data.details = `Legge: ${manganame}`;
+      data.state = `Oneshot｜Pag. ${pagenumber}`;
       data.startTimestamp = browsingStamp;
       presence.setActivity(data);
     } else if (document.location.href.endsWith("/?m_orderby=trending")) {
@@ -159,9 +159,9 @@ presence.on("UpdateData", async () => {
       manganame = document.title
         .replace(" - MangaWorld", "")
         .replace(" scan ITA", "");
-      if (manganame.includes("- Scan ITA")) {
+      if (manganame.includes("- Scan ITA")) 
         manganame = manganame.replace(" - Scan ITA", "");
-      }
+      
       data.smallImageKey = "viewing";
       data.smallImageText = "Visualizza";
       data.details = "Visualizza il Manga:";
@@ -173,7 +173,7 @@ presence.on("UpdateData", async () => {
     data.smallImageKey = "search";
     data.smallImageText = document.title.split("Archivi - ")[0];
     data.details =
-      "Naviga nei manga del " + document.title.split("Archivi - ")[0];
+      `Naviga nei manga del ${document.title.split("Archivi - ")[0]}`;
     data.startTimestamp = browsingStamp;
     presence.setActivity(data);
   } else if (document.location.pathname.startsWith("/manga-artist/")) {

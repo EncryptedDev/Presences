@@ -47,10 +47,11 @@ const spinnerSettings = {
     language = lang;
     info("Loading and caching files.");
     const src = `./websites/`;
-    if (!existsSync(src))
-      return (
+    if (!existsSync(src)) {
+return (
         error("Presences folder could not be found... exiting."), process.exit()
       );
+}
 
     readdirSync(src).forEach((letter) => {
       readdirSync(`${src}/${letter}/`).forEach(async (presence) => {
@@ -237,7 +238,7 @@ const spinnerSettings = {
     for await (const file of files) {
       counter--;
       const data = file[1],
-        path = data.path,
+        {path} = data,
         check = JSON.parse(await readFileSync(data.path).toString());
 
       if (check.description[language]) {
@@ -251,7 +252,7 @@ const spinnerSettings = {
             green("Please translate the following description of ") +
             yellow(file[0]) +
             green(`:\n"`) +
-            hex("#bebebe")(file[1].description["en"]) +
+            hex("#bebebe")(file[1].description.en) +
             green(`":\n`) +
             hex("#bebebe")(`(Type "skip" to skip or "stop" to stop)`),
           name: "translatedDes"
@@ -280,10 +281,11 @@ const spinnerSettings = {
           filesMap.delete(file[0]);
           await checkCount();
 
-          if (!JSON.parse(readFileSync(path).toString()).description[language])
-            error(
+          if (!JSON.parse(readFileSync(path).toString()).description[language]) {
+error(
               `An error occured while saving the file. Please manually add the translation to: ${language}. The version was automatically bumped.`
             );
+}
         }
       }
     }

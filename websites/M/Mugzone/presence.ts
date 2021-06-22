@@ -14,9 +14,9 @@ presence.on("UpdateData", async () => {
     presence.setActivity(presenceData);
   } else {
     presenceData.startTimestamp = browsingStamp;
-    if (document.location.pathname == "/") {
+    if (document.location.pathname == "/") 
       presenceData.details = "Malody Main Page";
-    } else if (document.location.pathname == "/index") {
+     else if (document.location.pathname == "/index") {
       presenceData.smallImageKey = "home";
       presenceData.details = "Viewing Home Page";
     } else if (document.location.pathname.endsWith("/chart")) {
@@ -95,8 +95,8 @@ presence.on("UpdateData", async () => {
       if (document.location.pathname.includes("/topic")) {
         presenceData.smallImageKey = "chat";
         presenceData.details =
-          "Viewing topic: " +
-          document.querySelector("#chead > div > a").textContent;
+          `Viewing topic: ${ 
+          document.querySelector("#chead > div > a").textContent}`;
         presenceData.state = document.querySelector(
           "#g_talk > div.g_talk_title > p > span"
         ).textContent;
@@ -125,9 +125,9 @@ presence.on("UpdateData", async () => {
         }
       }
     } else if (document.location.pathname.startsWith("/accounts")) {
-      if (document.location.pathname.includes("/login")) {
+      if (document.location.pathname.includes("/login")) 
         presenceData.details = "Logging in";
-      } else if (document.location.pathname.includes("/user")) {
+       else if (document.location.pathname.includes("/user")) {
         presenceData.details = "Viewing User: ";
         presenceData.state = document.querySelector(
           "#content > div.user_head.g_rblock > div.right > p.name > span"
@@ -143,8 +143,8 @@ presence.on("UpdateData", async () => {
     } else if (document.location.pathname.includes("/page/userpage/edit/")) {
       presenceData.smallImageKey = "edit";
       presenceData.details =
-        document.querySelector("#content > div.g_title").textContent +
-        "profile";
+        `${document.querySelector("#content > div.g_title").textContent 
+        }profile`;
     } else if (document.location.pathname.includes("/page/search")) {
       presenceData.smallImageKey = "search";
       presenceData.details = document.querySelector(

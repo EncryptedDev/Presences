@@ -1,10 +1,10 @@
-var presence = new Presence({
+let presence = new Presence({
   clientId: "619219701146583080" // CLIENT ID FOR YOUR PRESENCE
-});
+}),
 
-var item: any, split: any, item2: any, itemfinish: any;
+ item: any, split: any, item2: any, itemfinish: any,
 
-var browsingStamp = Math.floor(Date.now() / 1000);
+ browsingStamp = Math.floor(Date.now() / 1000);
 
 presence.on("UpdateData", async () => {
   const presenceData: PresenceData = {
@@ -78,11 +78,11 @@ presence.on("UpdateData", async () => {
       item2 = document.querySelector("#itemTitle > span");
       itemfinish = item.innerText.replace(item2.innerText, "");
       presenceData.details = "Viewing product:";
-      if (itemfinish.length > 128) {
-        presenceData.state = itemfinish.substring(0, 125) + "...";
-      } else {
+      if (itemfinish.length > 128) 
+        presenceData.state = `${itemfinish.substring(0, 125)}...`;
+       else 
         presenceData.state = itemfinish;
-      }
+      
 
       delete presenceData.smallImageKey;
 
@@ -188,7 +188,7 @@ presence.on("UpdateData", async () => {
         "#w2 > div.str-billboard__store > div.str-billboard__store-info > div.str-billboard__title-container > h1"
       );
       presenceData.details = "eBay Stores";
-      presenceData.state = "Tag: " + item.innerText;
+      presenceData.state = `Tag: ${item.innerText}`;
 
       delete presenceData.smallImageKey;
 
@@ -506,11 +506,11 @@ presence.on("UpdateData", async () => {
       split = item.split("message-uid-");
       split = split[1].split(" ");
       item2 =
-        "#qanda-message-" +
-        split[0] +
-        " > div:nth-child(1) > div.lia-panel-message-root.lia-message-qanda.lia-panel-message.lia-js-data-messageUid-" +
-        split[0] +
-        " > div > div > div.lia-decoration-border-content > div > div > div > div.lia-quilt-row.lia-quilt-row-forum-message-main > div.lia-quilt-column.lia-quilt-column-20.lia-quilt-column-right.lia-quilt-column-main-right > div > div.lia-message-heading.lia-component-message-header > div > div.lia-quilt-column.lia-quilt-column-20.lia-quilt-column-left > div > div > h5";
+        `#qanda-message-${ 
+        split[0] 
+        } > div:nth-child(1) > div.lia-panel-message-root.lia-message-qanda.lia-panel-message.lia-js-data-messageUid-${ 
+        split[0] 
+        } > div > div > div.lia-decoration-border-content > div > div > div > div.lia-quilt-row.lia-quilt-row-forum-message-main > div.lia-quilt-column.lia-quilt-column-20.lia-quilt-column-right.lia-quilt-column-main-right > div > div.lia-message-heading.lia-component-message-header > div > div.lia-quilt-column.lia-quilt-column-20.lia-quilt-column-left > div > div > h5`;
       itemfinish = document.querySelector(item2);
     }
 
@@ -523,22 +523,22 @@ presence.on("UpdateData", async () => {
         "#lia-body > div.lia-page > center > div.MinimumWidthContainer > div > div > div > div > div.lia-quilt-row.lia-quilt-row-row_1 > div > div > div > div.lia-quilt-row.lia-quilt-row-title > div > div > h1 > span"
       );
       presenceData.details = "eBay Forum, Viewing:";
-      if (item.innerText.length > 128) {
-        presenceData.state = item.innerText.substring(0, 125) + "...";
-      } else {
+      if (item.innerText.length > 128) 
+        presenceData.state = `${item.innerText.substring(0, 125)}...`;
+       else 
         presenceData.state = item.innerText;
-      }
+      
 
       delete presenceData.smallImageKey;
 
       presence.setActivity(presenceData);
     } else if (itemfinish !== null) {
       presenceData.details = "eBay Forum, Viewing:";
-      if (itemfinish.innerText.length > 128) {
-        presenceData.state = itemfinish.innerText.substring(0, 125) + "...";
-      } else {
+      if (itemfinish.innerText.length > 128) 
+        presenceData.state = `${itemfinish.innerText.substring(0, 125)}...`;
+       else 
         presenceData.state = itemfinish.innerText;
-      }
+      
 
       delete presenceData.smallImageKey;
 
@@ -548,11 +548,11 @@ presence.on("UpdateData", async () => {
         "#lia-body > div.lia-page > center > div.MinimumWidthContainer > div > div > div > div > div.lia-quilt-row.lia-quilt-row-header > div > div > div.viewprofilepagebanner.lia-component-view-profile-banner > div > div > div.lia-user-name > div > div > span"
       );
       presenceData.details = "Viewing profile of user:";
-      if (item.innerText.length > 128) {
-        presenceData.state = item.innerText.substring(0, 125) + "...";
-      } else {
+      if (item.innerText.length > 128) 
+        presenceData.state = `${item.innerText.substring(0, 125)}...`;
+       else 
         presenceData.state = item.innerText;
-      }
+      
 
       delete presenceData.smallImageKey;
 
@@ -566,11 +566,11 @@ presence.on("UpdateData", async () => {
         "#messageview > div:nth-child(1) > div > div > div > div > div > div.lia-decoration-border-content > div > div > div > div.lia-quilt-row.lia-quilt-row-forum-message-main > div.lia-quilt-column.lia-quilt-column-20.lia-quilt-column-right.lia-quilt-column-main-right > div > div.lia-message-heading.lia-component-message-header > div > div.lia-quilt-column.lia-quilt-column-20.lia-quilt-column-left > div > div"
       );
       presenceData.details = "eBay Forum, Reading:";
-      if (item.innerText.length > 128) {
-        presenceData.state = item.innerText.substring(0, 125) + "...";
-      } else {
+      if (item.innerText.length > 128) 
+        presenceData.state = `${item.innerText.substring(0, 125)}...`;
+       else 
         presenceData.state = item.innerText;
-      }
+      
 
       presenceData.smallImageKey = "reading";
 
@@ -584,11 +584,11 @@ presence.on("UpdateData", async () => {
         "#lia-body > div.lia-page > center > div.MinimumWidthContainer > div > div > div > div > div > div > div > div > div.lia-quilt-row.lia-quilt-row-title > div > div > h1 > span"
       );
       presenceData.details = "eBay Forum, Reading:";
-      if (item.innerText.length > 128) {
-        presenceData.state = item.innerText.substring(0, 125) + "...";
-      } else {
+      if (item.innerText.length > 128) 
+        presenceData.state = `${item.innerText.substring(0, 125)}...`;
+       else 
         presenceData.state = item.innerText;
-      }
+      
 
       presenceData.smallImageKey = "reading";
 

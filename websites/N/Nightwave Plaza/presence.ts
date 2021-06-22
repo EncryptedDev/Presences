@@ -9,8 +9,8 @@ presence.on("UpdateData", async () => {
   const playBackStatus =
     document.querySelector(".player-play").textContent == "Stop"
       ? "play"
-      : "pause";
-  const presenceData: presenceData = {
+      : "pause",
+   presenceData: presenceData = {
     state: document.querySelector(".player-title").textContent,
     details: document.querySelector(".player-artist").textContent,
     largeImageKey: "icon",
@@ -21,8 +21,8 @@ presence.on("UpdateData", async () => {
     const ts = playerTime
       .substring(0, 5)
       .split(":")
-      .map((n) => Number(n));
-    const te = playerTime
+      .map((n) => Number(n)),
+     te = playerTime
       .substring(8, 13)
       .split(":")
       .map((n) => Number(n));

@@ -40,9 +40,9 @@ presence.on("UpdateData", async () => {
     browsingStamp = Math.floor(Date.now() / 1000);
   }
 
-  if (!oldLang) {
+  if (!oldLang) 
     oldLang = newLang;
-  } else if (oldLang !== newLang) {
+   else if (oldLang !== newLang) {
     oldLang = newLang;
     strings = getStrings();
   }
@@ -54,7 +54,7 @@ presence.on("UpdateData", async () => {
 
   const path = location.href
       .replace(/\/?$/, "/")
-      .replace("https://" + location.hostname, "")
+      .replace(`https://${location.hostname}`, "")
       .replace("?", "/")
       .replace("@", "@/")
       .replace("#", ""),
@@ -123,9 +123,9 @@ presence.on("UpdateData", async () => {
     };
 
   for (const [k, v] of Object.entries(statics)) {
-    if (path.match(k)) {
+    if (path.match(k)) 
       presenceData = { ...presenceData, ...v };
-    }
+    
   }
 
   if (!buttons) delete presenceData.buttons;

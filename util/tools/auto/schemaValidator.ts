@@ -37,12 +37,12 @@ const latestMetadataSchema = "https://schemas.premid.app/metadata/1.4",
   const schema = (await axios.get(latestMetadataSchema)).data;
 
   console.log(
-    blue("Beginning validation of " + metaFiles.length + " presences...")
+    blue(`Beginning validation of ${metaFiles.length} presences...`)
   );
 
   for (const metaFile of metaFiles) {
     const meta = loadMetadata(metaFile),
-      service = meta.service,
+      {service} = meta,
       result = validate(meta, schema),
       validLangs = (await axios.get("https://api.premid.app/v2/langFile/list"))
         .data,
@@ -54,20 +54,21 @@ const latestMetadataSchema = "https://schemas.premid.app/metadata/1.4",
     });
 
     if (result.valid && !invalidLangs.length) {
-      if (meta.schema && meta.schema !== latestMetadataSchema) {
+      if (meta.schema && meta.schema !== latestMetadataSchema) 
         validatedWithWarnings(service, "Using out of date schema");
-      } else {
+       else 
         validated(service);
-      }
+      
     } else {
       const errors: string[] = [];
       for (const error of result.errors)
         errors.push(`${error.message} @ ${error.property}`);
 
-      for (const invalidLang of invalidLangs)
-        errors.push(
+      for (const invalidLang of invalidLangs) {
+errors.push(
           `"${invalidLang}" is not a valid language! Valid languages can be found here: https://api.premid.app/v2/langFile/list`
         );
+}
 
       failedToValidate(service, errors);
     }
@@ -87,9 +88,9 @@ const latestMetadataSchema = "https://schemas.premid.app/metadata/1.4",
     process.exit(-1);
   }
 
-  if (stats.validatedWithWarnings > 0) {
+  if (stats.validatedWithWarnings > 0) 
     console.log(yellow("One or more services validated, but with warnings."));
-  }
+  
 })();
 
 interface metadata extends Metadata {
